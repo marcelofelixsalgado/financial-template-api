@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS financial_TEMPLATE_db;
+USE financial_TEMPLATE_db;
+
