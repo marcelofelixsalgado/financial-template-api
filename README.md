@@ -1,2 +1,2 @@
 # financial-template-api
-TEMPALTE DESCRIPTION
+TEMPLATE DESCRIPTION
