@@ -1,0 +1,715 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "ENTIDADE_NAME",
+        "version": "ENTIDADE_VERSION",
+        "description": "MODEL_DESCRIPTION"
+    },
+    "servers": [
+        {
+            "url": "SERVER_PRODUCTION_URL",
+            "description": "SERVER_PRODUCTION_DESCRIPTION"
+        },
+        {
+            "url": "SERVER_SANDBOX_URL",
+            "description": "SERVER_SANDBOX_DESCRIPTION"
+        }
+    ],
+    "paths": {
+        "/RECURSO_DE_COLECAO_PATH": {
+            "summary": "RECURSO_DE_COLECAO_SUMMARY",
+            "description": "RECURSO_DE_COLECAO_DESCRIPTION",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "_limit",
+                        "description": "Set the number of records to be returned",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "_offset",
+                        "description": "Position of the reference record, from which the next N records will be returned",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "_sort",
+                        "description": "Provides the possibility to sort the values of the list, in ascending and descending directions",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/RESPONSE_200_OK_COLECAO_NAME"
+                    }
+                },
+                "operationId": "RECURSO_DE_COLECAO_GET_OPERATION_ID",
+                "summary": "RECURSO_DE_COLECAO_GET_SUMMARY",
+                "description": "RECURSO_DE_COLECAO_GET_DESCRIPTION"
+            },
+            "post": {
+                "requestBody": {
+                    "description": "RECURSO_DE_COLECAO_POST_BODY_DESCRIPTION",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ENTIDADE_REQUEST_NAME"
+                            },
+                            "examples": {
+                                "RECURSO_DE_COLECAO_POST_BODY_EXAMPLE_NAME": {
+                                    "value": "RECURSO_DE_COLECAO_POST_BODY_EXAMPLE_JSON"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "parameters": [
+                    {
+                        "examples": {
+                            "Content-Type-Header-Example": {
+                                "value": "application/json"
+                            }
+                        },
+                        "name": "Content-Type-Header",
+                        "description": "Defines the format of the request body",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/components/responses/RESPONSE_201_CREATED_NAME"
+                    }
+                },
+                "operationId": "RECURSO_DE_COLECAO_POST_OPERATION_ID",
+                "summary": "RECURSO_DE_COLECAO_POST_SUMMARY",
+                "description": "RECURSO_DE_COLECAO_POST_DESCRIPTION"
+            }
+        },
+        "/RECURSO_DE_INSTANCIA_PATH/{id}": {
+            "summary": "RECURSO_DE_INSTANCIA_SUMMARY",
+            "description": "RECURSO_DE_INSTANCIA_DESCRIPTION",
+            "get": {
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/RESPONSE_200_OK_INSTANCIA_NAME"
+                    }
+                },
+                "operationId": "RECURSO_DE_INSTANCIA_GET_OPERATION_ID",
+                "summary": "RECURSO_DE_INSTANCIA_GET_SUMMARY",
+                "description": "RECURSO_DE_INSTANCIA_GET_DESCRIPTION"
+            },
+            "put": {
+                "requestBody": {
+                    "description": "RECURSO_DE_INSTANCIA_PUT_REQUEST_BODY_DESCRIPTION",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ENTIDADE_REQUEST_NAME"
+                            },
+                            "examples": {
+                                "RECURSO_DE_INSTANCIA_PUT_REQUEST_BODY_EXAMPLE_NAME": {
+                                    "value": "RECURSO_DE_INSTANCIA_PUT_REQUEST_BODY_EXAMPLE_JSON"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "parameters": [
+                    {
+                        "examples": {
+                            "Content-Type-Header-Example": {
+                                "value": "application/json"
+                            }
+                        },
+                        "name": "Content-Type-Header",
+                        "description": "Defines the format of the request body",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/RESPONSE_200_OK_INSTANCIA_NAME"
+                    }
+                },
+                "operationId": "RECURSO_DE_INSTANCIA_PUT_OPERATION_ID",
+                "summary": "RECURSO_DE_INSTANCIA_PUT_SUMMARY",
+                "description": "RECURSO_DE_INSTANCIA_PUT_DESCRIPTION"
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "RECURSO_DE_INSTANCIA_DELETE_RESPONSE_DESCRIPTION"
+                    }
+                },
+                "operationId": "RECURSO_DE_INSTANCIA_DELETE_OPERATION_ID",
+                "summary": "RECURSO_DE_INSTANCIA_DELETE_SUMMARY",
+                "description": "RECURSO_DE_INSTANCIA_DELETE_DESCRIPTION"
+            },
+            "patch": {
+                "requestBody": {
+                    "description": "RECURSO_DE_INSTANCIA_PATCH_BODY_DESCRIPTION",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ENTIDADE_REQUEST_PATCH_NAME"
+                            },
+                            "examples": {
+                                "RECURSO_DE_INSTANCIA_PATCH_BODY_EXAMPLE_NAME": {
+                                    "value": "RECURSO_DE_INSTANCIA_PATCH_BODY_EXAMPLE_JSON"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "parameters": [
+                    {
+                        "examples": {
+                            "Content-Type-Header-Example": {
+                                "value": "application/json"
+                            }
+                        },
+                        "name": "Content-Type-Header",
+                        "description": "Defines the format of the request body",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/RESPONSE_200_OK_INSTANCIA_NAME"
+                    }
+                },
+                "operationId": "RECURSO_DE_INSTANCIA_PATCH_OPERATION_ID",
+                "summary": "RECURSO_DE_INSTANCIA_PATCH_SUMMARY",
+                "description": "RECURSO_DE_INSTANCIA_PATCH_DESCRIPTION"
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "RECURSO_DE_INSTANCIA_ID_EXAMPLE_NAME": {
+                            "value": "465d6122-b9b1-4d07-9eb9-502177d6e3b2"
+                        }
+                    },
+                    "name": "id",
+                    "description": "RECURSO_DE_INSTANCIA_ID_DESCRIPTION",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "ErrorMessage": {
+                "title": "Root Type for ErrorMessage",
+                "description": "Represents an error message for HTTP status codes 4xx and 5xx",
+                "required": [
+                    "error_code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "error_code": {
+                        "description": "Code that identifies the error",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "Short text that gives datails about the error",
+                        "type": "string"
+                    },
+                    "details": {
+                        "description": "List of specific and detailed information about the error",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorMessageDetails"
+                        }
+                    }
+                },
+                "example": {
+                    "error_code": "UNPROCESSABLE_ENTITY",
+                    "message": "The request is semantically incorrect or fails business validation",
+                    "details": [
+                        {
+                            "issue": "INVALID_STRING_MAX_LENGTH",
+                            "description": "Field value exceeded the maximum allowed number of 5 characters",
+                            "location": "body",
+                            "field": "status",
+                            "value": "400000"
+                        }
+                    ]
+                }
+            },
+            "ErrorMessageDetails": {
+                "title": "Root Type for ErrorMessageDetails",
+                "description": "Detailed information about an error",
+                "required": [
+                    "description",
+                    "location",
+                    "issue"
+                ],
+                "type": "object",
+                "properties": {
+                    "issue": {
+                        "description": "Unique code that identifies the issue",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Short text that describes the error",
+                        "type": "string"
+                    },
+                    "location": {
+                        "description": "Part of the request where is the field related to the issue. Posible values are:\n- path_parameter\n- query_parameter\n- header\n- body",
+                        "type": "string"
+                    },
+                    "field": {
+                        "description": "Request field  related to the issue",
+                        "type": "string"
+                    },
+                    "value": {
+                        "description": "Current value of the field related to the issue",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "issue": "INVALID_STRING_MAX_LENGTH",
+                    "description": "Field value exceeded the maximum allowed number of 5 characters",
+                    "location": "body",
+                    "field": "status",
+                    "value": "400000"
+                }
+            },            
+            "ENTIDADE_REQUEST_NAME": {
+                "title": "Root Type for ENTIDADE_REQUEST_NAME",
+                "description": "ENTIDADE_REQUEST_DESCRIPTION",
+                "type": "object",
+                "properties": {
+                    "ENTIDADE_REQUEST_PROPERTIES": {
+                        "description": "ENTIDADE_REQUEST_PROPERTIES_DESCRIPTION",
+                        "type": "string"
+                    }
+                },
+                "example": "ENTIDADE_REQUEST_JSON_EXAMPLE"
+            },
+            "ENTIDADE_RESPONSE_NAME": {
+                "description": "ENTIDADE_RESPONSE_DESCRIPTION",
+                "required": [
+                    "ENTIDADE_RESPONSE_PROPERTIES",
+                    "campo2"
+                ],
+                "type": "object",
+                "properties": {
+                    "ENTIDADE_RESPONSE_PROPERTIES": {
+                        "description": "ENTIDADE_REQUEST_PROPERTIES_DESCRIPTION",
+                        "type": "string"
+                    },
+                    "campo2": {
+                        "description": ""
+                    }
+                },
+                "example": "ENTIDADE_RESPONSE_JSON_EXAMPLE"
+            },
+            "ENTIDADE_RESPONSE_LIST_NAME": {
+                "description": "ENTIDADE_RESPONSE_LIST_DESCRIPTION",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ENTIDADE_RESPONSE_NAME"
+                },
+                "example": "ENTIDADE_RESPONSE_LIST_JSON_EXAMPLE"
+            },
+            "ENTIDADE_REQUEST_PATCH_NAME": {
+                "title": "Root Type for ENTIDADE_REQUEST_NAME",
+                "description": "ENTIDADE_REQUEST_PATCH_DESCRIPTION",
+                "type": "object",
+                "properties": {
+                    "ENTIDADE_REQUEST_PATCH_PROPERTIES": {
+                        "description": "ENTIDADE_REQUEST_PATCH_PROPERTIES_DESCRIPTION",
+                        "type": "string"
+                    }
+                },
+                "example": "ENTIDADE_REQUEST_PATCH_JSON_EXAMPLE"
+            }
+        },
+        "responses": {
+            "RESPONSE_200_OK_INSTANCIA_NAME": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ENTIDADE_RESPONSE_NAME"
+                        },
+                        "examples": {
+                            "RESPONSE_200_OK_INSTANCIA_EXAMPLE_NAME": {
+                                "value": "RESPONSE_200_OK_INSTANCIA_EXAMPLE_JSON"
+                            }
+                        }
+                    }
+                },
+                "description": "RESPONSE_200_OK_INSTANCIA_DESCRIPTION"
+            },
+            "RESPONSE_200_OK_COLECAO_NAME": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ENTIDADE_RESPONSE_LIST_NAME"
+                        },
+                        "examples": {
+                            "RESPONSE_200_OK_COLECAO_EXAMPLE_NAME": {
+                                "value": "RESPONSE_200_OK_COLECAO_EXAMPLE_JSON"
+                            }
+                        }
+                    }
+                },
+                "description": "RESPONSE_200_OK_COLECAO_DESCRIPTION"
+            },
+            "RESPONSE_201_CREATED_NAME": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ENTIDADE_RESPONSE_NAME"
+                        },
+                        "examples": {
+                            "RESPONSE_201_CREATED_EXAMPLE_NAME": {
+                                "value": "RESPONSE_201_CREATED_EXAMPLE_JSON"
+                            }
+                        }
+                    }
+                },
+                "description": "RESPONSE_201_CREATED_DESCRIPTION"
+            },
+            "Response-400-BadRequest": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-400-BadRequest-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "INVALID_REQUEST_SYNTAX",
+                                        "message": "Request is not well-formed, syntactically incorrect, or violates schema",
+                                        "details": [
+                                            {
+                                                "issue": "DECIMALS_NOT_SUPPORTED",
+                                                "description": "Field value does not support decimals",
+                                                "location": "body",
+                                                "field": "customer.age",
+                                                "value": "30.6"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (400 - Bad Request)"
+            },
+            "Response-401-Unauthorized": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-401-Unauthorized-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "INVALID_CLIENT",
+                                        "message": "Client authentication failed",
+                                        "details": [
+                                            {
+                                                "issue": "AUTHENTICATION_FAILURE",
+                                                "description": "Authentication failed due to missing authorization header, or invalid authentication credentials",
+                                                "location": "header",
+                                                "field": "Authorization",
+                                                "value": "abc"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (401 - Unauthorized)"
+            },
+            "Response-403-Forbidden": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-403-Forbidden-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "NOT_AUTHORIZED",
+                                        "message": "Authorization failed due to insufficient permissions",
+                                        "details": [
+                                            {
+                                                "issue": "PERMISSION_DENIED",
+                                                "description": "You do not have permission to access or perform operations on this resource"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (403 - Forbidden)"
+            },
+            "Response-404-NotFound": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-404-NotFound-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "RESOURCE_NOT_FOUND",
+                                        "message": "The specified resource does not found",
+                                        "details": [
+                                            {
+                                                "issue": "NO_RECORDS_FOUND",
+                                                "description": "Records not found. Please check the input parameters and try again",
+                                                "location": "query_parameter",
+                                                "field": "customer.cpf",
+                                                "value": "123"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (404 - Not Found)"
+            },
+            "Response-405-MethodNotAllowed": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-405-MethodNotAllowed-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "METHOD_NOT_ALLOWED",
+                                        "message": "Invalid path and HTTP method combination",
+                                        "details": [
+                                            {
+                                                "issue": "METHOD_NOT_SUPPORTED",
+                                                "description": "The server does not implement the requested path and HTTP method"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (405 - Method Not Allowed)"
+            },
+            "Response-415-UnsupportedMediaType": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-415-UnsupportedMediaType-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "UNSUPPORTED_MEDIA_TYPE",
+                                        "message": "The server does not support the request body media type",
+                                        "details": [
+                                            {
+                                                "issue": "INVALID_CONTENT_TYPE",
+                                                "description": "The specified Content Type header is invalid",
+                                                "location": "header",
+                                                "field": "Content-Type"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (415 - Unsupported Media Type)"
+            },
+            "Response-422-UnprocessableEntity": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-422-UnprocessableEntity-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "UNPROCESSABLE_ENTITY",
+                                        "message": "The request is semantically incorrect or fails business validation",
+                                        "details": [
+                                            {
+                                                "issue": "INVALID_PARAMETER_FORMAT",
+                                                "description": "Field value does not conform to the expected format: 99999-99",
+                                                "location": "body",
+                                                "field": "zipcode",
+                                                "value": "14400-1234"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (422 - Unprocessable Entity)"
+            },
+            "Response-500-InternalServerError": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-500-InternalServerError-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "INTERNAL_SERVER_ERROR",
+                                        "message": "A system or application error occurred"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (500 - Internal Server Error)"
+            },
+            "Response-502-BadGateway": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-502-BadGateway-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "BAD_GATEWAY",
+                                        "message": "The server returned an invalid response"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (502 - Bad Gateway)"
+            },
+            "Response-503-ServiceUnavailable": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-503-ServiceUnavailable-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "SERVICE_UNAVAILABLE",
+                                        "message": "The server cannot handle the request for a service due to temporary maintenance"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (503 - Service Unavailable)"
+            },
+            "Response-504-GatewayTimeout": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            }
+                        },
+                        "examples": {
+                            "Response-504-GatewayTimeout-Example": {
+                                "value": [
+                                    {
+                                        "error_code": "GATEWAY_TIMEOUT",
+                                        "message": "The server did not send the response in the expected time"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": "Error message (504 - Gateway Timeout)"
+            }
+        }
+    }
+}
