@@ -9,6 +9,7 @@ require (
 	github.com/labstack/echo/v4 v4.10.2
 	github.com/marcelofelixsalgado/financial-api-auth-module v1.0.0
 	github.com/marcelofelixsalgado/financial-api-response-module v1.0.0
+	github.com/satori/go.uuid v1.2.0
 	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.8.2
 )
