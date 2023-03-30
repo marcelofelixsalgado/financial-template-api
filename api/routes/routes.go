@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers/health"
-	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/middlewares"
+	"github.com/marcelofelixsalgado/financial-commons/api/controllers"
+	"github.com/marcelofelixsalgado/financial-commons/api/middlewares"
 
 	"github.com/labstack/echo/v4"
 )
@@ -12,8 +12,7 @@ type Routes struct {
 	healthRoutes health.HealthRoutes
 }
 
-func NewRoutes(
-	healthRoutes health.HealthRoutes) *Routes {
+func NewRoutes(healthRoutes health.HealthRoutes) *Routes {
 	return &Routes{
 		healthRoutes: healthRoutes,
 	}

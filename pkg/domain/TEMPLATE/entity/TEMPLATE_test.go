@@ -1,11 +1,11 @@
-package TEMPLATE_test
+package entity_test
 
 import (
 	"fmt"
 	"strings"
 	"testing"
 
-	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/domain/TEMPLATE"
+	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/domain/TEMPLATE/entity"
 )
 
 type testCase struct {
@@ -14,7 +14,7 @@ type testCase struct {
 	expected string
 }
 
-func TestNewPeriodSuccess(t *testing.T) {
+func TestNewTEMPLATESuccess(t *testing.T) {
 
 	testCases := []testCase{
 		{
@@ -24,7 +24,7 @@ func TestNewPeriodSuccess(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		received, err := TEMPLATE.Create(testCase.tenantId, testCase.name)
+		received, err := entity.Create(testCase.tenantId, testCase.name)
 		if err != nil {
 			t.Errorf("Should not return an error: %s", err)
 		}
@@ -37,14 +37,14 @@ func TestNewPeriodSuccess(t *testing.T) {
 	}
 }
 
-func TestNewPeriodTrimSpaces(t *testing.T) {
+func TestNewTEMPLATETrimSpaces(t *testing.T) {
 	testCase := testCase{
 		tenantId: "1234",
 		name:     "     	TEMPLATE      ",
 	}
 	expectedName := "TEMPLATE"
 
-	received, err := TEMPLATE.Create(testCase.tenantId, testCase.name)
+	received, err := entity.Create(testCase.tenantId, testCase.name)
 	if err != nil {
 		t.Errorf("Should not return an error: %s", err)
 	}
@@ -53,13 +53,13 @@ func TestNewPeriodTrimSpaces(t *testing.T) {
 	}
 }
 
-func TestNewPeriodInvalidName(t *testing.T) {
+func TestNewTEMPLATEInvalidName(t *testing.T) {
 	testCase := testCase{
 		tenantId: "1234",
 		name:     "",
 		expected: "name is required",
 	}
-	_, err := TEMPLATE.Create(testCase.tenantId, testCase.name)
+	_, err := entity.Create(testCase.tenantId, testCase.name)
 
 	if err == nil || (err.Error() != testCase.expected) {
 		t.Errorf(formatErrorDiff(testCase.expected, err))

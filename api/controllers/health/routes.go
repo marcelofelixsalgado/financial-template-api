@@ -3,7 +3,7 @@ package health
 import (
 	"net/http"
 
-	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers"
+	"github.com/marcelofelixsalgado/financial-commons/api/controllers"
 )
 
 var basepath = "/v1/health"

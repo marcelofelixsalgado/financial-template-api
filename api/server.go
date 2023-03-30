@@ -5,10 +5,10 @@ import (
 	"fmt"
 
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers/health"
-	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/middlewares"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/routes"
-	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/commons/logger"
-	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/settings"
+	"github.com/marcelofelixsalgado/financial-commons/api/middlewares"
+	"github.com/marcelofelixsalgado/financial-commons/pkg/commons/logger"
+	"github.com/marcelofelixsalgado/financial-commons/settings"
 
 	"os"
 	"os/signal"

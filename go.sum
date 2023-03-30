@@ -15,10 +15,8 @@ github.com/labstack/echo/v4 v4.10.2 h1:n1jAhnq/elIFTHr1EYpiYtyKgx4RW9ccVgkqByZaN
 github.com/labstack/echo/v4 v4.10.2/go.mod h1:OEyqf2//K1DFdE57vw2DRgWY0M7s65IVQO2FzvI4J5k=
 github.com/labstack/gommon v0.4.0 h1:y7cvthEAEbU0yHOf4axH8ZG2NH8knB9iNSoTO8dyIk8=
 github.com/labstack/gommon v0.4.0/go.mod h1:uW6kP17uPlLJsD3ijUYn3/M5bAxtlZhMI6m3MFxTMTM=
-github.com/marcelofelixsalgado/financial-api-auth-module v1.0.0 h1:YUsydwkXvYoN6PaXkCmSEhI2x2wWFPJgZF1rpiiijRM=
-github.com/marcelofelixsalgado/financial-api-auth-module v1.0.0/go.mod h1:9t1Lttl9mZfPLManscvksppo299WxS+7ylofw3WBU5o=
-github.com/marcelofelixsalgado/financial-api-response-module v1.0.0 h1:6dNDyycQEmNZp8R0k3BWoZeQ+5LUJBsNvEsbzU5Bn90=
-github.com/marcelofelixsalgado/financial-api-response-module v1.0.0/go.mod h1:yl3Gb7eMPGE2J5jAvvjkeG3LeUvzWkAj+rDoMjXoz64=
+github.com/marcelofelixsalgado/financial-commons v1.0.0 h1:4VQOBCLsjHM+LlrplFndIJIXtoVNtBc7lu/5nTMguZE=
+github.com/marcelofelixsalgado/financial-commons v1.0.0/go.mod h1:PozCmbV1ix8+NuOijnKxPmmlsD/jYBqqedZA/N340N8=
 github.com/mattn/go-colorable v0.1.11/go.mod h1:u5H1YNBxpqRaxsYJYSkiCWKzEfiAb1Gb520KVy5xxl4=
 github.com/mattn/go-colorable v0.1.13 h1:fFA4WZxdEF4tXPZVKMLwD8oUnCTTo08duU7wxecdEvA=
 github.com/mattn/go-colorable v0.1.13/go.mod h1:7S9/ev0klgBDR4GtXTXX8a3vIGJpMovkB8vQcUbaXHg=
@@ -34,6 +32,7 @@ github.com/sirupsen/logrus v1.9.0 h1:trlNQbNUG3OdDrDil03MCb1H2o9nJ1x4/5LYw7byDE0
 github.com/sirupsen/logrus v1.9.0/go.mod h1:naHLuLoDiP4jHNo9R0sCBMtWGeIprob74mVsIT4qYEQ=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
+github.com/stretchr/objx v0.5.0 h1:1zr/of2m5FGMsad5YfcqgdqdWrIhu+EBEJRhR1U7z/c=
 github.com/stretchr/objx v0.5.0/go.mod h1:Yh+to48EsGEfYuaHDzXPcE3xhTkx73EhmCGUpEOglKo=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/stretchr/testify v1.7.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
