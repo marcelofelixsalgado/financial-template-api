@@ -123,7 +123,7 @@ func (repository *TEMPLATERepository) List(filterParameters []filter.FilterParam
 		rows, err = repository.client.Query("select id, tenant_id, name, created_at, updated_at from TEMPLATES where tenant_id = ?", tenantId)
 	} else {
 		if len(nameFilter) > 0 {
-			rows, err = repository.client.Query("select id, tenant_id, name, created_at, updated_at from TEMPLATES where tenantId = ? and name = ?", tenantId, nameFilter)
+			rows, err = repository.client.Query("select id, tenant_id, name, created_at, updated_at from TEMPLATES where tenant_id = ? and name = ?", tenantId, nameFilter)
 		}
 	}
 
