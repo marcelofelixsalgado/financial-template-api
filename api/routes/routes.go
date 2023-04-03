@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers/TEMPLATE"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers/health"
 	"github.com/marcelofelixsalgado/financial-commons/api/controllers"
 	"github.com/marcelofelixsalgado/financial-commons/api/middlewares"
@@ -9,16 +10,22 @@ import (
 )
 
 type Routes struct {
-	healthRoutes health.HealthRoutes
+	TEMPLATERoutes TEMPLATE.TEMPLATERoutes
+	healthRoutes   health.HealthRoutes
 }
 
-func NewRoutes(healthRoutes health.HealthRoutes) *Routes {
+func NewRoutes(TEMPLATERoutes TEMPLATE.TEMPLATERoutes, healthRoutes health.HealthRoutes) *Routes {
 	return &Routes{
-		healthRoutes: healthRoutes,
+		TEMPLATERoutes: TEMPLATERoutes,
+		healthRoutes:   healthRoutes,
 	}
 }
 
 func (routes *Routes) RouteMapping(http *echo.Echo) {
+
+	// TEMPLATE routes
+	basePath, TEMPLATERoutes := routes.TEMPLATERoutes.TEMPLATERouteMapping()
+	setupRoute(http, basePath, TEMPLATERoutes)
 
 	// health routes
 	basePath, healthRoutes := routes.healthRoutes.HealthRouteMapping()

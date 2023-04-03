@@ -2,13 +2,23 @@ package api
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 
+	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers/TEMPLATE"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers/health"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/routes"
 	"github.com/marcelofelixsalgado/financial-commons/api/middlewares"
 	"github.com/marcelofelixsalgado/financial-commons/pkg/commons/logger"
+	"github.com/marcelofelixsalgado/financial-commons/pkg/infrastructure/database"
 	"github.com/marcelofelixsalgado/financial-commons/settings"
+
+	TEMPLATERepository "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/infrastructure/repository/TEMPLATE"
+	TEMPLATECreate "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/usecase/TEMPLATE/create"
+	TEMPLATEDelete "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/usecase/TEMPLATE/delete"
+	TEMPLATEFind "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/usecase/TEMPLATE/find"
+	TEMPLATEList "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/usecase/TEMPLATE/list"
+	TEMPLATEUpdate "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/usecase/TEMPLATE/update"
 
 	"os"
 	"os/signal"
@@ -55,12 +65,13 @@ func (server *Server) startServer() {
 	server.http.Use(middlewares.Logger())
 
 	// Connects to database
-	// databaseClient := database.NewConnection()
+	databaseClient := database.NewConnection()
 
+	TEMPLATERoutes := setupTEMPLATERoutes(databaseClient)
 	healthRoutes := setupHealthRoutes()
 
 	// Setup all routes
-	routes := routes.NewRoutes(healthRoutes)
+	routes := routes.NewRoutes(TEMPLATERoutes, healthRoutes)
 
 	routes.RouteMapping(server.http)
 	server.routes = routes
@@ -92,6 +103,26 @@ func (s *Server) stopServer() {
 	logger.Info("Server is stoping...")
 	s.http.Shutdown(ctx)
 	close(s.stop)
+}
+
+func setupTEMPLATERoutes(databaseClient *sql.DB) TEMPLATE.TEMPLATERoutes {
+	// setup respository
+	repository := TEMPLATERepository.NewTEMPLATERepository(databaseClient)
+
+	// setup Use Cases (services)
+	createUseCase := TEMPLATECreate.NewCreateUseCase(repository)
+	deleteUseCase := TEMPLATEDelete.NewDeleteUseCase(repository)
+	findUseCase := TEMPLATEFind.NewFindUseCase(repository)
+	listUseCase := TEMPLATEList.NewListUseCase(repository)
+	updateUseCase := TEMPLATEUpdate.NewUpdateUseCase(repository)
+
+	// setup router handlers
+	TEMPLATEHandler := TEMPLATE.NewTEMPLATEHandler(createUseCase, deleteUseCase, findUseCase, listUseCase, updateUseCase)
+
+	// setup routes
+	TEMPLATERoutes := TEMPLATE.NewTEMPLATERoutes(TEMPLATEHandler)
+
+	return TEMPLATERoutes
 }
 
 func setupHealthRoutes() health.HealthRoutes {

@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/go-sql-driver/mysql v1.7.0
 	github.com/labstack/echo/v4 v4.10.2
-	github.com/marcelofelixsalgado/financial-commons v1.0.0
+	github.com/marcelofelixsalgado/financial-commons v1.0.1-0.20230403124731-4d17897aa4b4
 	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.8.2
 )

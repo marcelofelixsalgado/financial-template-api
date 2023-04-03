@@ -23,26 +23,26 @@ func NewFindUseCase(repository TEMPLATE.ITEMPLATERepository) IFindUseCase {
 
 func (findUseCase *FindUseCase) Execute(input InputFindTEMPLATEDto) (OutputFindTEMPLATEDto, status.InternalStatus, error) {
 
-	TEMPLATE, err := findUseCase.repository.FindById(input.Id)
+	entity, err := findUseCase.repository.FindById(input.Id)
 	if err != nil {
 		return OutputFindTEMPLATEDto{}, status.InternalServerError, err
 	}
-	if TEMPLATE == nil {
+	if entity == nil {
 		return OutputFindTEMPLATEDto{}, status.InvalidResourceId, err
 	}
 
-	if TEMPLATE.GetId() == "" {
+	if entity.GetId() == "" {
 		return OutputFindTEMPLATEDto{}, status.NoRecordsFound, err
 	}
 
 	outputFindTEMPLATEDto := OutputFindTEMPLATEDto{
-		Id:        TEMPLATE.GetId(),
-		Name:      TEMPLATE.GetName(),
-		CreatedAt: TEMPLATE.GetCreatedAt().Format(time.RFC3339),
+		Id:        entity.GetId(),
+		Name:      entity.GetName(),
+		CreatedAt: entity.GetCreatedAt().Format(time.RFC3339),
 	}
 
-	if !TEMPLATE.GetUpdatedAt().IsZero() {
-		outputFindTEMPLATEDto.UpdatedAt = TEMPLATE.GetUpdatedAt().Format(time.RFC3339)
+	if !entity.GetUpdatedAt().IsZero() {
+		outputFindTEMPLATEDto.UpdatedAt = entity.GetUpdatedAt().Format(time.RFC3339)
 	}
 
 	return outputFindTEMPLATEDto, status.Success, nil

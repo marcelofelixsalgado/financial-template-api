@@ -6,13 +6,13 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
-    image: marcelofelixsalgado/financial-TEMPLATE-api
-    container_name: financial-TEMPLATE-api
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 30000s /financial-TEMPLATE-api
+    image: marcelofelixsalgado/financial-template-api
+    container_name: financial-template-api
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 30000s /financial-template-api
     ports: 
-      - "8082:8082"
+      - "8081:8081"
     networks: 
-      - financial-TEMPLATE-network
+      - financial-template-network
     depends_on: 
        - db
 
@@ -20,7 +20,7 @@ services:
     platform: linux/x86_64
     image: mysql:5.7
     command: --innodb-use-native-aio=0
-    container_name: financial-TEMPLATE-db
+    container_name: financial-template-db
     restart: always
     tty: true
     volumes: 
@@ -32,9 +32,9 @@ services:
       - MYSQL_DATABASE=financial_TEMPLATE_db
       - MYSQL_ROOT_PASSWORD=root      
     networks: 
-      - financial-TEMPLATE-network
+      - financial-template-network
 
 networks: 
-  financial-TEMPLATE-network:
-    name: financial-TEMPLATE-network
+  financial-template-network:
+    name: financial-template-network
     driver: bridge
