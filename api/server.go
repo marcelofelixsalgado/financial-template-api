@@ -81,7 +81,7 @@ func (server *Server) startServer() {
 	addr := fmt.Sprintf(":%v", settings.Config.ApiHttpPort)
 	go func() {
 		if err := server.http.Start(addr); err != nil {
-			logger.Errorf("Shutting down the server now: ", err)
+			logger.Errorf("Shutting down the server now: %s", err)
 		}
 	}()
 }
