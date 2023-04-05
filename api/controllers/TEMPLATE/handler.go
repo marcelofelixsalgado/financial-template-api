@@ -84,6 +84,11 @@ func (TEMPLATEHandler *TEMPLATEHandler) CreateTEMPLATE(ctx echo.Context) error {
 	input.TenantId = tenantId
 
 	output, internalStatus, err := TEMPLATEHandler.createUseCase.Execute(input)
+	if internalStatus == status.EntityWithSameKeyAlreadyExists {
+		log.Warnf("Error trying to create the entity - duplicate key: %v", err)
+		responseMessage := responses.NewResponseMessage().AddMessageByIssue(faults.EntityWithSameKeyAlreadyExists, "body", "name", input.Name)
+		return ctx.JSON(responseMessage.HttpStatusCode, responseMessage)
+	}
 	if internalStatus != status.Success {
 		log.Errorf("Error trying to create the entity: %v", err)
 		responseMessage := responses.NewResponseMessage().AddMessageByErrorCode(faults.InternalServerError)
@@ -179,6 +184,11 @@ func (TEMPLATEHandler *TEMPLATEHandler) UpdateTEMPLATE(ctx echo.Context) error {
 	}
 
 	output, internalStatus, err := TEMPLATEHandler.updateUseCase.Execute(input)
+	if internalStatus == status.EntityWithSameKeyAlreadyExists {
+		log.Warnf("Error trying to create the entity - duplicate key: %v", err)
+		responseMessage := responses.NewResponseMessage().AddMessageByIssue(faults.EntityWithSameKeyAlreadyExists, "body", "name", input.Name)
+		return ctx.JSON(responseMessage.HttpStatusCode, responseMessage)
+	}
 	if internalStatus == status.InternalServerError {
 		log.Errorf("Error updating the entity: %v", err)
 		responseMessage := responses.NewResponseMessage().AddMessageByErrorCode(faults.InternalServerError)

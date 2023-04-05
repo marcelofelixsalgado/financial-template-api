@@ -8,10 +8,10 @@ import (
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers/TEMPLATE"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers/health"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/routes"
+	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/settings"
 	"github.com/marcelofelixsalgado/financial-commons/api/middlewares"
 	"github.com/marcelofelixsalgado/financial-commons/pkg/commons/logger"
 	"github.com/marcelofelixsalgado/financial-commons/pkg/infrastructure/database"
-	"github.com/marcelofelixsalgado/financial-commons/settings"
 
 	TEMPLATERepository "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/infrastructure/repository/TEMPLATE"
 	TEMPLATECreate "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/usecase/TEMPLATE/create"
