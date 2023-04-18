@@ -6,6 +6,8 @@ import (
 	"github.com/codingconcepts/env"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
+
+	"github.com/marcelofelixsalgado/financial-commons/settings"
 )
 
 // Common ConfigType struct to resolve env vars
@@ -32,12 +34,20 @@ type ConfigType struct {
 	LogAccessFile string `env:"LOG_ACCESS_FILE" default:"./access.log"`
 	LogAppFile    string `env:"LOG_APP_FILE" default:"./app.log"`
 	LogLevel      string `env:"LOG_LEVEL" default:"INFO"`
+
+	// Kafka settings
+	KafkaServerHost string `env:"KAFKA_SERVER_HOST"`
+	KafkaServerPort int    `env:"KAFKA_SERVER_PORT"`
+	KafkaGroupId    string `env:"KAFKA_GROUP_ID"`
 }
 
 var Config ConfigType
 
 // InitConfigs initializes the environment settings
 func Load() {
+
+	settings.Load()
+
 	// load .env (if exists)
 	err := godotenv.Load()
 

@@ -5,6 +5,7 @@ import (
 
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/domain/TEMPLATE/entity"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/infrastructure/repository/TEMPLATE"
+	"github.com/marcelofelixsalgado/financial-commons/pkg/events"
 	"github.com/marcelofelixsalgado/financial-commons/pkg/usecase/status"
 
 	repositoryStatus "github.com/marcelofelixsalgado/financial-commons/pkg/infrastructure/repository/status"
@@ -15,12 +16,16 @@ type ICreateUseCase interface {
 }
 
 type CreateUseCase struct {
-	repository TEMPLATE.ITEMPLATERepository
+	repository      TEMPLATE.ITEMPLATERepository
+	templateCreated events.IEvent
+	eventDispatcher events.IEventDispatcher
 }
 
-func NewCreateUseCase(repository TEMPLATE.ITEMPLATERepository) ICreateUseCase {
+func NewCreateUseCase(repository TEMPLATE.ITEMPLATERepository, templateCreated events.IEvent, eventDispatcher events.IEventDispatcher) ICreateUseCase {
 	return &CreateUseCase{
-		repository: repository,
+		repository:      repository,
+		templateCreated: templateCreated,
+		eventDispatcher: eventDispatcher,
 	}
 }
 
@@ -46,6 +51,10 @@ func (createUseCase *CreateUseCase) Execute(input InputCreateTEMPLATEDto) (Outpu
 		Name:      entity.GetName(),
 		CreatedAt: entity.GetCreatedAt().Format(time.RFC3339),
 	}
+
+	// Sending the event thought dispatcher
+	createUseCase.templateCreated.SetPayload(outputCreateTEMPLATEDto)
+	createUseCase.eventDispatcher.Dispatch(createUseCase.templateCreated)
 
 	return outputCreateTEMPLATEDto, status.Success, nil
 }

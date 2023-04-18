@@ -9,10 +9,17 @@ import (
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/controllers/health"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/api/routes"
 	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/settings"
+
+	"github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/event/template/handler"
+
 	"github.com/marcelofelixsalgado/financial-commons/api/middlewares"
 	"github.com/marcelofelixsalgado/financial-commons/pkg/commons/logger"
 	"github.com/marcelofelixsalgado/financial-commons/pkg/infrastructure/database"
 
+	"github.com/marcelofelixsalgado/financial-commons/pkg/events"
+	"github.com/marcelofelixsalgado/financial-commons/pkg/kafka"
+
+	template "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/event/template"
 	TEMPLATERepository "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/infrastructure/repository/TEMPLATE"
 	TEMPLATECreate "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/usecase/TEMPLATE/create"
 	TEMPLATEDelete "github.com/marcelofelixsalgado/financial-TEMPLATE-api/pkg/usecase/TEMPLATE/delete"
@@ -26,6 +33,8 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
+
+	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 // Server this is responsible for running an http server
@@ -64,11 +73,25 @@ func (server *Server) startServer() {
 	// Middlewares
 	server.http.Use(middlewares.Logger())
 
+	logger.Infof("Connecting to database")
+
 	// Connects to database
 	databaseClient := database.NewConnection()
 
-	TEMPLATERoutes := setupTEMPLATERoutes(databaseClient)
+	logger.Infof("Connecting to kafka")
+
+	// Connects to kafka
+	configMap := ckafka.ConfigMap{
+		"bootstrap.servers": fmt.Sprintf("%s:%d", settings.Config.KafkaServerHost, settings.Config.KafkaServerPort),
+		"group.id":          settings.Config.KafkaGroupId,
+	}
+	kafkaProducer := kafka.NewKafkaProducer(&configMap)
+	eventDispatcher := events.NewEventDispatcher()
+
+	TEMPLATERoutes := setupTEMPLATERoutes(databaseClient, eventDispatcher, kafkaProducer)
 	healthRoutes := setupHealthRoutes()
+
+	logger.Infof("Setup routes")
 
 	// Setup all routes
 	routes := routes.NewRoutes(TEMPLATERoutes, healthRoutes)
@@ -105,12 +128,15 @@ func (s *Server) stopServer() {
 	close(s.stop)
 }
 
-func setupTEMPLATERoutes(databaseClient *sql.DB) TEMPLATE.TEMPLATERoutes {
+func setupTEMPLATERoutes(databaseClient *sql.DB, eventDispatcher events.IEventDispatcher, kafkaProducer *kafka.Producer) TEMPLATE.TEMPLATERoutes {
 	// setup respository
 	repository := TEMPLATERepository.NewTEMPLATERepository(databaseClient)
 
+	TEMPLATECreatedEvent := template.NewTemplateCreated()
+	eventDispatcher.Register("TemplateCreated", handler.NewTemplateCreatedKafkaHandler(kafkaProducer))
+
 	// setup Use Cases (services)
-	createUseCase := TEMPLATECreate.NewCreateUseCase(repository)
+	createUseCase := TEMPLATECreate.NewCreateUseCase(repository, TEMPLATECreatedEvent, eventDispatcher)
 	deleteUseCase := TEMPLATEDelete.NewDeleteUseCase(repository)
 	findUseCase := TEMPLATEFind.NewFindUseCase(repository)
 	listUseCase := TEMPLATEList.NewListUseCase(repository)
