@@ -63,9 +63,11 @@ func (s *Server) Run() {
 }
 
 func (server *Server) startServer() {
+
 	go server.watchStop()
 
 	server.http = echo.New()
+
 	logger := logger.GetLogger()
 
 	logger.Infof("Server is starting now in %s.", settings.Config.Environment)
