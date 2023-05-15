@@ -84,8 +84,10 @@ func (server *Server) startServer() {
 
 	// Connects to kafka
 	configMap := ckafka.ConfigMap{
-		"bootstrap.servers": fmt.Sprintf("%s:%d", settings.Config.KafkaServerHost, settings.Config.KafkaServerPort),
-		"group.id":          settings.Config.KafkaGroupId,
+		"bootstrap.servers":   fmt.Sprintf("%s:%d", settings.Config.KafkaServerHost, settings.Config.KafkaServerPort),
+		"delivery.timeout.ms": settings.Config.KafkaDeliveryTimeout,
+		"acks":                settings.Config.KafkaAcks,
+		"enable.idempotence":  settings.Config.KafkaEnableIdempotence,
 	}
 	kafkaProducer := kafka.NewKafkaProducer(&configMap)
 	eventDispatcher := events.NewEventDispatcher()

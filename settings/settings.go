@@ -37,9 +37,11 @@ type ConfigType struct {
 	LogLevel      string `env:"LOG_LEVEL" default:"INFO"`
 
 	// Kafka settings
-	KafkaServerHost string `env:"KAFKA_SERVER_HOST"`
-	KafkaServerPort int    `env:"KAFKA_SERVER_PORT"`
-	KafkaGroupId    string `env:"KAFKA_GROUP_ID"`
+	KafkaServerHost        string `env:"KAFKA_SERVER_HOST"`
+	KafkaServerPort        int    `env:"KAFKA_SERVER_PORT"`
+	KafkaDeliveryTimeout   int    `env:"KAFKA_DELIVERY_TIMEOUT" default:"0"`
+	KafkaAcks              int    `env:"KAFKA_ACKS" default:"0"`                   // number of acknowledgements the leader broker must receive from ISR brokers before responding to the request: 0=Broker does not send any response/ack to client, -1 or all=Broker will block until message is committed by all in sync replicas
+	KafkaEnableIdempotence string `env:"KAFKA_ENABLE_IDEMPOTENCE" default:"false"` // When set to true, the producer will ensure that messages are successfully produced exactly once and in the original produce order.
 }
 
 var Config ConfigType

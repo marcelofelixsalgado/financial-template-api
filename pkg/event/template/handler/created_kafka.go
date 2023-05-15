@@ -28,7 +28,7 @@ func (h *TemplateCreatedKafkaHandler) Handle(message events.IEvent, wg *sync.Wai
 
 	deliveryChan := make(chan ckafka.Event)
 
-	go h.Kafka.Publish(message, nil, "templates", deliveryChan)
+	go h.Kafka.Publish(message, []byte("template_key"), "template_topic", deliveryChan)
 
 	event := <-deliveryChan
 	channelMessage := event.(*ckafka.Message)
