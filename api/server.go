@@ -32,6 +32,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
 
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
@@ -71,6 +72,10 @@ func (server *Server) startServer() {
 	logger := logger.GetLogger()
 
 	logger.Infof("Server is starting now in %s.", settings.Config.Environment)
+
+	// Prometheus
+	p := prometheus.NewPrometheus("echo", nil)
+	p.Use(server.http)
 
 	// Middlewares
 	server.http.Use(middlewares.Logger())
