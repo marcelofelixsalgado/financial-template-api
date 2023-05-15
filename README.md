@@ -34,3 +34,8 @@ To run locally:
 ```
 docker compose up
 ```
+
+### App Metrics
+```
+http://localhost:8081/metrics
+```
